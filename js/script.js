@@ -107,3 +107,31 @@ function ibg() {
 }
 ibg();
 //}
+
+const menuLinks = document.querySelectorAll('.header-bottom-menu__link[data-goto]');
+if (menuLinks.length > 0) {
+	menuLinks.forEach(menuLimk => {
+		menuLimk.addEventListener('click', onMenuLinkClick);
+	});
+
+	function onMenuLinkClick(e) {
+		const menuLink = e.target;
+		if (menuLink.dataset.goto && document.querySelector(menuLink.dataset.goto)) {
+			const gotoBlock = document.querySelector(menuLink.dataset.goto);
+			const gotoBlockValue = gotoBlock.getBoundingClientRect().top + pageYOffset - document.querySelector('.header-bottom').offsetHeight;
+
+			if (iconMenu.classList.contains('_active')) {
+				document.body.classList.remove('_lock')
+				iconMenu.classList.remove('_active');
+				menuHeader.classList.remove('_active');
+			}
+
+			window.scrollTo({
+				top: gotoBlockValue,
+				behavior: "smooth"
+			});
+			e.preventDefault();
+		}
+	}
+}
+
