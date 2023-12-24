@@ -324,7 +324,7 @@ header {
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 769px) {
   .header-menu__icon {
     display: block;
     z-index: 11;
